@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>West Yorkshire Crime Records</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+     <link rel="stylesheet" href="plugins/slick/slick.css">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  
+  <link rel="stylesheet" href="assets/css/animate-3.7.0.css">
+    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css">
+    <link rel="stylesheet" href="assets/fonts/flat-icon/flaticon.css">
+    <link rel="stylesheet" href="assets/css/owl-carousel.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+
+  <!-- Main Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/tableCss.css" rel="stylesheet">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="logo.png" type="image/png">
+
+   <!-- Js -->
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="js/script-in.js"></script>
+  </head>
+  <body style="background: #24C6DC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1 style="text-align: center; font-style: italic; font-size: 80px">
+					Crime in West Yorkshire <br>
+
+				</h1>
+
+				<br>
+				<br>
+			</div>
+		</div>
+	</div>
+	<div class="row border-secondary">
+		<div class="col-md-4" style="background-color: #e5e5e5; width: 10px; border: 1px solid">
+			<h2>
+				Select Filter:
+			</h2>
+			<p>
+
+				 <table class='text-left'><tr><td>Longitude: </td><td><input name="longitude" type="text" id="longitude" placeholder="Enter Longitude" style="width:200px"/> </td></tr>
+
+				<tr><td>Latitude: </td><td><input name="latitude" type="text" id="lattitude" placeholder="Enter Latitude" style="width:200px" /> </td></tr>
+
+				<br>
+
+				<tr><td>Month: </td><td> <div id="month"> </div></td></tr>
+
+				<tr><td>Reported by: </td><td> <div id="reportedBy"></div></td></tr> 
+				<tr><td>Falls Within: </td><td>  <div id="fallsWithin"> </div> </td></tr>
+
+				<tr><td>Crime Type: </td><td>  <div id="crimeType"> </div> </td></tr>
+
+				<tr><td>LSOA Code: </td><td>  <div id="LSOACode"> </div> </td></tr>
+				<tr><td>LSOA Name: </td><td>  <div id="LSOAName"> </div></td></tr>
+				<tr><td>Location: </td><td> <div id="location"> </div></td></tr>		
+
+				<tr><td>Last Outcome: </td> <td> <div id="lastOutcome"> </div> </td></tr>
+				
+				</table>
+			</p>
+		
+		</div>
+
+		<div class="col-md-4" style="background-color: #e5e5e5; border: 1px solid; padding:10px;">
+			<h2>
+				Select Aggregation:
+			</h2>
+			<p>
+              <div align="left" valign="top">
+				<table><tr><td>Aggregation Type:</td><td><select id="aggType"><option></option><option value="top">Top</option>
+							<option value="bottom">Bottom</option></select></td></tr>
+				<tr><td>Aggregation On:</td><td><div id="columnOption"> </div> </td></tr>
+
+			</table>
+
+			<br>
+			<br>
+
+<table>
+
+				<h3> Select Sort: </h3>
+
+              <div align="left" valign="top">
+				<table><tr><td>Sort Type:</td><td><select id="sortType"><option></option><option value="asc">Ascending</option>
+							<option value="desc">Descending</option></select><div id="columnOption2"> </div></td></tr>
+							<tr><td>Limit:</td><td><input name="limit" type="text" id="limit" placeholder="Enter Limit" /> </td></tr>
+
+
+				</table>
+				</div>
+			</p>
+		</div>
+		<div class="col-md-4">
+
+
+				<button type="button" id="resetAll" onclick=resetAll() class="btn btn-outline-danger" style="font-size: 50px; width: 350px; height: 150px">
+				Reset All
+			</button> 
+			<br>
+			<br>
+
+			<button type="button" id="searchBtn" onclick=searchBtn() class="btn btn-outline-danger"  style="font-size: 50px; width: 350px; height: 150px">
+				Search
+			</button> 
+			<br>
+			<br>
+			
+
+			<button type="button" id="showAllData" onclick=showAllData() class="btn btn-outline-danger"  style="font-size: 50px; width: 350px; height: 150px">
+				Show All
+			</button> 
+			
+			</div> 
+			</p>
+		</div>
+	</div>
+	
+	<div class="col-md-1" hidden="true">
+ 
+              <p class="text-uppercase">Select Column</p>
+			  <div id="column" align="left" valign="top"></div>
+            </div>
+       
+
+<br>
+
+<br>
+<br>
+<br>
+
+
+
+		<div class="col-md-12">
+
+
+			<h3 class="text" style="text-align: center; color:#000000">Results</h3>
+		
+			<table>
+
+				
+				<div id="displayData" class="card-text"> </div>
+			</table>
+		</div>
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
